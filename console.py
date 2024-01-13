@@ -5,6 +5,11 @@ from models.base_model import BaseModel
 from models import storage
 import shlex
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """Interactive command-line console for HBNB data management"""
@@ -14,6 +19,11 @@ class HBNBCommand(cmd.Cmd):
     Classes = {
         "BaseModel": BaseModel,
         "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review,
     }
 
     def do_EOF(self, arg):

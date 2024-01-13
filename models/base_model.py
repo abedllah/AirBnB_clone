@@ -31,9 +31,12 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        class_name = self.__class__.__name__
+        """Return a dictionary representation of the instance."""
         attributes = self.__dict__.copy()
+        attributes['__class__'] = self.__class__.__name__
         attributes['created_at'] = attributes['created_at'].isoformat()
-        attributes['updated_at'] = attributes['updated_at'].isoformat()
-        attributes['__class__'] = class_name
+
+        if isinstance(attributes['updated_at'], datetime):
+            attributes['updated_at'] = attributes['updated_at'].isoformat()
+
         return attributes
