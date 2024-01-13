@@ -2,10 +2,17 @@
 
 import json
 from os.path import isfile
+from models.base_model import BaseModel
+from models.user import User
 
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
+    
+    Classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+    }
 
     def all(self):
         return self.__objects
@@ -27,7 +34,7 @@ class FileStorage:
                 data = json.load(file)
                 for key, value in data.items():
                     class_name, obj_id = key.split('.')
-                    cls = globals()[class_name]
+                    cls = self.Classes.get(class_name, BaseModel)
                     obj = cls(**value)
                     self.__objects[key] = obj
 

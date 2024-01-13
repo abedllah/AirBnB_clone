@@ -4,12 +4,17 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 import shlex
-
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """Interactive command-line console for HBNB data management"""
 
     prompt = '(hbnb) '
+    
+    Classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+    }
 
     def do_EOF(self, arg):
         """Exit the console"""
@@ -28,10 +33,10 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if not args or args[0] == "":
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.Classes:
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
+            new_instance = self.Classes[args[0]]()
             new_instance.save()
             print(new_instance.id)
             
@@ -40,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if not args or args[0] == "":
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.Classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
@@ -56,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if not args or args[0] == "":
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.Classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
@@ -71,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Print all string representations of instances."""
         args = shlex.split(arg)
-        if args and args[0] not in ["BaseModel"]:
+        if args and args[0] not in self.Classes:
             print("** class doesn't exist **")
         else:
             instances = []
@@ -85,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if not args or args[0] == "":
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.Classes:
             print("** class doesn't exist **")
         elif len(args) < 2:
             print("** instance id missing **")
