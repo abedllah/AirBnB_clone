@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
             print(instances)
        
     def default(self, arg):
-        """Default command that handles class cmds: <class name>.func()"""
+        """Default command that handles class"""
         args = arg.split('.', 1)
         if args[0] in self.Classes:
             if args[1].strip('()') == 'all':
@@ -105,6 +105,8 @@ class HBNBCommand(cmd.Cmd):
             elif args[1].strip('()') == 'count':
                 class_name = args[0]
                 self.count_obj(class_name)
+            elif args[1].split('(')[0] == 'show':
+                self.do_show(args[0]+' '+args[1].split('(')[1].strip(')'))
             else:
                 print('*** Unknown syntax ***')
         else:
