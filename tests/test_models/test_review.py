@@ -7,6 +7,7 @@ import pep8
 from models.base_model import BaseModel
 from models.review import Review
 
+
 class TestReview(unittest.TestCase):
     """
     Testing Review class implementation
@@ -33,7 +34,10 @@ class TestReview(unittest.TestCase):
         conform to pycodestyle
         """
         result = self.pep8style.check_files(self.files)
-        self.assertEqual(result.total_errors, 0, "Found code style errors (and warnings).")
+        self.assertEqual(
+            result.total_errors,
+            0,
+            "Found code style errors (and warnings).")
 
     def test_doc_constructor(self):
         """

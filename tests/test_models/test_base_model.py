@@ -19,7 +19,8 @@ class TestBaseModel(unittest.TestCase):
         Set up for the whole test class
         """
         cls.pep8style = pep8.StyleGuide(quiet=True)
-        cls.files = ['models/base_model.py', 'tests/test_models/test_base_model.py']
+        cls.files = ['models/base_model.py',
+                     'tests/test_models/test_base_model.py']
 
     def test_doc_module(self):
         """
@@ -34,7 +35,10 @@ class TestBaseModel(unittest.TestCase):
         conform to pycodestyle
         """
         result = self.pep8style.check_files(self.files)
-        self.assertEqual(result.total_errors, 0, "Found code style errors (and warnings).")
+        self.assertEqual(
+            result.total_errors,
+            0,
+            "Found code style errors (and warnings).")
 
     def test_doc_constructor(self):
         """

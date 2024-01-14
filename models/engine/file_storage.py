@@ -12,6 +12,9 @@ from models.review import Review
 
 
 class FileStorage:
+    """
+    FileStorage class
+    """
     __file_path = "file.json"
     __objects = {}
 
@@ -26,13 +29,22 @@ class FileStorage:
     }
 
     def all(self):
+        """
+        return the dictinary objects
+        """
         return self.__objects
 
     def new(self, obj):
+        """
+        adds a new instance to objects
+        """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
+        """
+        serializes objects to json and saves them to a file
+        """
         serialized_objects = {}
         for key, value in self.__objects.items():
             serialized_objects[key] = value.to_dict()
@@ -40,6 +52,9 @@ class FileStorage:
             json.dump(serialized_objects, file)
 
     def reload(self):
+        """
+        deserializes the json from the file and populates objects
+        """
         if isfile(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)

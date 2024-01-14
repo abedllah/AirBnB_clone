@@ -64,7 +64,9 @@ class TestFileStorage(unittest.TestCase):
             os.remove("file.json")
 
     def test_all(self):
-        """Check the all"""
+        """
+        Check the all
+        """
         obj = self.storage.all()
         self.assertIsNotNone(obj)
         self.assertEqual(type(obj), dict)
@@ -110,7 +112,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_docstrings(self):
         """
-        Check the docString for each function
+        Check the docstrings for each function
         """
         self.assertTrue(FileStorage.all.__doc__)
         self.assertTrue(hasattr(FileStorage, 'all'))
