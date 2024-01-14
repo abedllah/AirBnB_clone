@@ -10,10 +10,11 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
-    
+
     Classes = {
         "BaseModel": BaseModel,
         "User": User,
@@ -47,4 +48,3 @@ class FileStorage:
                     cls = self.Classes.get(class_name, BaseModel)
                     obj = cls(**value)
                     self.__objects[key] = obj
-
