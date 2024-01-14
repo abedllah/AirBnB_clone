@@ -11,11 +11,12 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """Interactive command-line console for HBNB data management"""
 
     prompt = '(hbnb) '
-    
+
     Classes = {
         "BaseModel": BaseModel,
         "User": User,
@@ -49,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance = self.Classes[args[0]]()
             new_instance.save()
             print(new_instance.id)
-            
+
     def do_show(self, arg):
         """Print the string representation of an instance."""
         args = shlex.split(arg)
@@ -65,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
                 print(storage.all()[key])
             else:
                 print("** no instance found **")
-                
+
     def do_destroy(self, arg):
         """Delete an instance based on class name and id."""
         args = shlex.split(arg)
@@ -82,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
-                
+
     def do_all(self, arg):
         """Print all string representations of instances."""
         args = shlex.split(arg)
@@ -94,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
                 if not args or args[0] == "" or args[0] == value.__class__.__name__:
                     instances.append(str(value))
             print(instances)
-            
+
     def do_update(self, arg):
         """Update an instance based on class name and id."""
         args = shlex.split(arg)
@@ -119,6 +120,7 @@ class HBNBCommand(cmd.Cmd):
                 attribute_type = type(getattr(instance, attribute_name))
                 setattr(instance, attribute_name, attribute_type(value))
                 storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

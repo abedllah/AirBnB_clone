@@ -1,12 +1,21 @@
 #!/usr/bin/python3
 
+"""
+Base_model module
+"""
+
 import uuid
 from datetime import datetime
-#from models import storage
 import models
 
+
 class BaseModel:
+    """
+    Defines all common attributes/methods for other classes
+    """
+
     def __init__(self, *args, **kwargs):
+        """initialize variables"""
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -23,10 +32,17 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
+        """
+        method that returns a string representation of an object/instance
+        """
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
     def save(self):
+        """
+        method that updates the public instance attribute updated_at
+        with the current datetime
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
