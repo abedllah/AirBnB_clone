@@ -113,12 +113,12 @@ class HBNBCommand(cmd.Cmd):
     def count_obj(self, class_name):
         """Print the number of instances of a class."""
         if not class_name:
-            print("** class name missing **")
+            print("** class name d **")
         elif class_name not in self.Classes:
             print("** class doesn't exist **")
         else:
             counter = 0
-            for key in storage._FileStorage__objects.items():
+            for key, value in storage._FileStorage__objects.items():
                 if class_name == key.split('.')[0]:
                     counter += 1
             print(counter)  
