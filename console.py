@@ -95,6 +95,17 @@ class HBNBCommand(cmd.Cmd):
                 if not args or args[0] == "" or args[0] == value.__class__.__name__:
                     instances.append(str(value))
             print(instances)
+       
+    def default(self, arg):
+        """Default command that handles class cmds: <class name>.func()"""
+        args = arg.split('.', 1)
+        if args[0] in self.Classes:
+            if args[1].strip('()') == 'all':
+                self.do_all(args[0])
+            else:
+                print('*** Unknown syntax ***')
+        else:
+            print("** class doesn't exist **")
 
     def do_update(self, arg):
         """Update an instance based on class name and id."""
