@@ -5,7 +5,7 @@ import unittest
 import datetime
 import json
 import pep8
-from models.base.model import BaseModel
+from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):

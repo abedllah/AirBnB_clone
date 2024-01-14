@@ -4,7 +4,7 @@ import unittest
 import datetime
 import json
 import pep8
-from models.basse_model import BaseModel
+from models.base_model import BaseModel
 from models.user import User
 
 
