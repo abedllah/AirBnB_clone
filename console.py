@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
                 if not args or args[0] == "" or args[0] == value.__class__.__name__:
                     instances.append(str(value))
             print(instances)
-       
+
     def default(self, arg):
         """Default command that handles class"""
         args = arg.split('.', 1)
@@ -125,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage._FileStorage__objects.items():
                 if class_name == key.split('.')[0]:
                     counter += 1
-            print(counter)  
+            print(counter)
 
     def do_update(self, arg):
         """Update an instance based on class name and id."""
