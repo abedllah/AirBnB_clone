@@ -107,6 +107,8 @@ class HBNBCommand(cmd.Cmd):
                 self.count_obj(class_name)
             elif args[1].split('(')[0] == 'show':
                 self.do_show(args[0]+' '+args[1].split('(')[1].strip(')'))
+            elif args[1].split('(')[0] == 'destroy':
+                self.do_destroy(args[0]+' '+args[1].split('(')[1].strip(')'))
             else:
                 print('*** Unknown syntax ***')
         else:
